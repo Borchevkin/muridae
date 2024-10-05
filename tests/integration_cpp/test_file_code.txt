@@ -1,0 +1,8 @@
+void some_function(void) {
+    some_func();
+    char test_str[] = "tuple \\n\\t";
+    char a = 'A';
+    printf(test_str "\n");
+    printf(a);
+    printf("some text \t with %d");
+}

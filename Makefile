@@ -61,7 +61,10 @@ init:
 	mkdir -p ${ROOT_DIR}/artifacts/build/release
 	mkdir -p ${ROOT_DIR}/artifacts/reports/check_style
 	mkdir -p ${ROOT_DIR}/artifacts/reports/check_static
-	mkdir -p ${ROOT_DIR}/artifacts/repirts/check_security
+	mkdir -p ${ROOT_DIR}/artifacts/reports/check_security
+	mkdir -p ${ROOT_DIR}/artifacts/reports/test_unit
+	mkdir -p ${ROOT_DIR}/artifacts/reports/test_integration
+	mkdir -p ${ROOT_DIR}/artifacts/reports/test_e2e
 
 
 # Apply codestyle to all codebase
@@ -106,13 +109,13 @@ build_release:
 # Run unit tests, generate a test report and a gcov report into ./artifacts/reports/test_unit/
 .PHONY: test_unit
 test_unit: build_debug
-	cd ${ROOT_DIR}/artifacts/build/debug && ctest
+	cd ${ROOT_DIR}/artifacts/build/debug && ctest --output-on-failure
 
 
 # Run integration testing and generate artifacts into ./artifacts/reports/test_integration/
 .PHONY: test_integration
 test_integration: build_debug
-	cd ${ROOT_DIR}/artifacts/build/debug && ctest
+	cd ${ROOT_DIR}/artifacts/build/debug && ctest --output-on-failure
 
 
 # Test E2E and generate artifacts into ./artifacts/reports/test_e2e/

@@ -21,7 +21,29 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Libraries
 ###############################################################################
 
+add_library(
+    Snippeter SHARED
+    src/snippeter.cpp
+    inc/snippeter.hpp
+)
 
+target_include_directories(
+    Snippeter PRIVATE
+    inc/
+    src/
+)
+
+add_library(
+    Cli SHARED
+    src/cli.cpp
+    inc/cli.hpp 
+)
+
+target_include_directories(
+    Cli PRIVATE
+    inc/
+    src/ 
+)
 
 ###############################################################################
 # Executable
@@ -36,6 +58,12 @@ target_include_directories(
     muridae PUBLIC
     "${PROJECT_BINARY_DIR}"
     inc/
+)
+
+target_link_libraries(
+    muridae
+    Snippeter
+    Cli
 )
 
 ###############################################################################
@@ -58,18 +86,34 @@ add_executable(
     ./tests/unit_cpp/test_unit_base.cpp
 )
 
+target_include_directories(
+    test_unit_base PUBLIC
+    "${PROJECT_BINARY_DIR}"
+    inc/
+    src/
+)
+
+target_link_libraries(
+    test_unit_base
+    Snippeter
+    GTest::gtest_main
+)
+
 add_executable(
     test_int_base
     ./tests/integration_cpp/test_int_base.cpp
 )
 
-target_link_libraries(
-    test_unit_base
-    GTest::gtest_main
+target_include_directories(
+    test_int_base PUBLIC
+    "${PROJECT_BINARY_DIR}"
+    inc/
+    src/
 )
 
 target_link_libraries(
     test_int_base
+    Snippeter
     GTest::gtest_main
 )
 
