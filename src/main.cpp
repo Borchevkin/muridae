@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 #include <string>
 
 #include "errors.hpp"
@@ -6,9 +7,6 @@
 #include "cli.hpp"
 
 int main(int argc, char *argv[]) {
-    const std::string in_filename =
-        "./../../../tests/integration_cpp/test_file_code.txt";
-    const std::string out_filename = "./test_file_output_snippet.txt";
 
     Cli::Params params;
     try {
@@ -16,18 +14,22 @@ int main(int argc, char *argv[]) {
         params = arg_parser.GetParams();
     }
     catch (...) {
-        std::cout << std::endl << Cli::HELP_STRING << std::endl;
+        std::cout << Cli::HELP_STRING << std::endl;
         return ERR_NG;
     }
 
     try {
-        auto snippeter = Snippeter(in_filename);
-        snippeter.CreateSnippetFile(out_filename);
-        std::cout << "Snippet was written to <" << out_filename << ">" << std::endl;
+        auto snippeter = Snippeter(params.in_filepath);
+        snippeter.CreateSnippetFile(params.out_filepath);
+        std::cout << "Snippet was written to <" << params.out_filepath << ">" << std::endl;
         return ERR_OK;
     }
+    catch (const std::runtime_error& e) {
+        std::cout << "Error: <" << e.what() << ">" << std::endl;
+    }
     catch (...) {
-        std::cout << "pizdec" << std::endl;
+        std::cout << "Unknown error. Aborted" << std::endl;
+        throw;
     }
 
     return ERR_NG;

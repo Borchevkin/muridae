@@ -5,7 +5,13 @@
 #include <vector>
 
 namespace Cli {
-constexpr std::string_view HELP_STRING = "Help string\n";
+constexpr std::string_view HELP_STRING = R"(
+Muridae - it's snippet generator for VSCode.
+
+Usage:
+   $ muridae <input_file_text> <output_file_snippet>
+)";
+
 constexpr int ARG_COUNT = 3; /**< Max arguments count */
 
 /** Structure which holds all parameters passing to program */

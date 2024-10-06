@@ -96,6 +96,7 @@ target_include_directories(
 target_link_libraries(
     test_unit_base
     Snippeter
+    Cli
     GTest::gtest_main
 )
 
@@ -114,6 +115,7 @@ target_include_directories(
 target_link_libraries(
     test_int_base
     Snippeter
+    Cli
     GTest::gtest_main
 )
 
