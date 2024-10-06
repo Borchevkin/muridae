@@ -7,39 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [0.1.0] - 2024-10-07
+
 ### Added
 
-- One
-- Two
-- Three
-
-### Changed
-
-- One
-- Two
-- Three
-
-### Deprecated
-
-- One
-- Two
-- Three
-
-### Removed
-
-- One
-- Two
-- Three
-
-### Fixed
-
-- One
-- Two
-- Three
-
-### Security
-
-- One
-- Two
-- Three
-
+- Basic implementation.

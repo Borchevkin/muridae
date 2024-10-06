@@ -150,6 +150,10 @@ all_release:
 run_debug: build_debug
 	cd ${ROOT_DIR}/artifacts/build/debug && ./muridae
 
+.PHONY: install
+install:
+	cp ${ROOT_DIR}/artifacts/build/release/muridae /usr/local/sbin/muridae
+
 # *****************************************************************************
 # * END OF MAKEFILE
 # *****************************************************************************
